@@ -17,7 +17,7 @@ function App() {
       const response = await fetch(url);
       if (response.ok) {
         const processedRequest: ResponseFromServer[] = await response.json();
-        setMessages(processedRequest.reverse());
+        setMessages(processedRequest);
 
         let newUrl = url + `?datetime=${processedRequest[0].datetime}`;
 
