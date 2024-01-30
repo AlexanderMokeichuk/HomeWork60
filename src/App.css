@@ -4,5 +4,5 @@
   background-repeat: no-repeat;
 }
 .scroll::-webkit-scrollbar {
-  width: 0;
+  margin: 0;
 }

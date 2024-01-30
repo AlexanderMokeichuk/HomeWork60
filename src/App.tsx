@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {ResponseFromServer} from "./type";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SendNewMessageForm from "./components/SendNewMessageForm/SendNewMessageForm";
@@ -12,12 +12,18 @@ function App() {
   const [messages, setMessages] = useState<ResponseFromServer[]>([]);
   const [newMessage, setNewMessage] = useState(false);
 
+  const bottomEl = useRef<HTMLDivElement>(null);
+  const scrollToBottom = () => {
+    bottomEl.current?.scrollIntoView({behavior: 'smooth', block: "end"});
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(url);
       if (response.ok) {
         const processedRequest: ResponseFromServer[] = await response.json();
         setMessages(processedRequest);
+        scrollToBottom();
 
         let newUrl = url + `?datetime=${processedRequest[0].datetime}`;
 
@@ -37,6 +43,7 @@ function App() {
     void fetchData();
   }, [newMessage]);
 
+
   return (
     <div className={"container mt-5 d-flex flex-column align-items-center"}>
       <div className={"backForMessenger border border-1 rounded-2 p-3 d-flex flex-column justify-content-between"} style={{width: 600, height: 700,}}>
@@ -47,6 +54,7 @@ function App() {
             })
             : <Loader/>
           }
+          <div ref={bottomEl}/>
         </div>
         <SendNewMessageForm/>
       </div>
