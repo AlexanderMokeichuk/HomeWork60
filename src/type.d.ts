@@ -1,4 +1,4 @@
-export interface responseFromServer {
+export interface ResponseFromServer {
   _id: string;
   author: string;
   datetime: string;
