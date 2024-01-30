@@ -1,0 +1,8 @@
+.backForMessenger {
+ background-image: url("assets/backInMessanger.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.scroll::-webkit-scrollbar {
+  width: 0;
+}

@@ -1,5 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {PostToServer} from "../../type";
+import {Send} from "react-bootstrap-icons";
 
 const defaultState:PostToServer = {
   author: "",
@@ -34,20 +35,25 @@ const SendNewMessageForm: React.FC = React.memo(() => {
   };
 
   return (
-    <form onSubmit={postToServer}>
+    <form onSubmit={postToServer} className={"d-flex gap-1"}>
+      <i className="bi bi-send"></i>
       <input
         type={"text"}
         name={"author"}
+        placeholder={"Your name"}
+        className={"form-control w-25"}
 
         value={formState.author}
         onChange={changeEvent}/>
       <input
         type={"text"}
         name={"message"}
+        placeholder={"Message"}
+        className={"form-control"}
 
         value={formState.message}
         onChange={changeEvent}/>
-      <button>Send</button>
+      <button className={"btn btn-info"}><Send/></button>
     </form>
   );
 });

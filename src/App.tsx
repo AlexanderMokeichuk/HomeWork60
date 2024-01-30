@@ -2,9 +2,9 @@ import {useEffect, useState} from "react";
 import {ResponseFromServer} from "./type";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SendNewMessageForm from "./components/SendNewMessageForm/SendNewMessageForm";
-import dayjs from "dayjs";
 import MessageAlert from "./components/MessageAlert/MessageAlert";
 import Loader from "./components/Loder/Loader";
+import "./App.css";
 
 const url: string = "http://146.185.154.90:8000/messages";
 
@@ -37,11 +37,10 @@ function App() {
     void fetchData();
   }, [newMessage]);
 
-
   return (
     <div className={"container mt-5 d-flex flex-column align-items-center"}>
-      <div className={"border border-1 p-3"} style={{width: 500, height: 600}}>
-        <div className={"h-100 overflow-auto "}>
+      <div className={"backForMessenger border border-1 rounded-2 p-3 d-flex flex-column justify-content-between"} style={{width: 600, height: 700,}}>
+        <div className={"scroll overflow-auto"} style={{height: 610}}>
           {messages.length
             ? messages.map((message) => {
               return <MessageAlert key={message._id} message={message}/>;
